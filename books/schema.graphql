@@ -1,0 +1,22 @@
+schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key"]) {
+  query: Query
+}
+
+type Book @key(fields: "id") {
+  id: ID!
+  title: String!
+}
+
+type Query {
+  _entities(representations: [_Any!]!): [_Entity]!
+  _service: _Service!
+  allBooks: [Book!]!
+}
+
+scalar _Any
+
+union _Entity = Book
+
+type _Service {
+  sdl: String!
+}
